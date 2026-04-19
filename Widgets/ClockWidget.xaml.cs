@@ -93,7 +93,6 @@ namespace Fluent_Ricing.Widgets
 
             // Remove the WinUI 3 input island border
             var nonClientSource = InputNonClientPointerSource.GetForWindowId(AppWindow.Id);
-            nonClientSource.SetRegionRects(NonClientRegionKind.Border, null);
             nonClientSource.SetRegionRects(NonClientRegionKind.Caption, null);
 
             WindowBlur.EnableBlur(_hwnd, 0x20FFFFFF);
