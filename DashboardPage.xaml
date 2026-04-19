@@ -1,0 +1,486 @@
+<Page
+    x:Class="Fluent_Ricing.DashboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Fluent_Ricing">
+
+    <ScrollViewer>
+        <StackPanel Spacing="24" Padding="32,24">
+
+            <!-- Header -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Dashboard"
+                           Style="{ThemeResource TitleLargeTextBlockStyle}"/>
+                <TextBlock Text="Manage your active widgets"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+            </StackPanel>
+
+            <!-- Active count banner -->
+            <Border x:Name="ActiveBanner"
+                    CornerRadius="8"
+                    Background="{ThemeResource AccentFillColorDefaultBrush}"
+                    Padding="16,12"
+                    Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <FontIcon Glyph="&#xE73E;"
+                              FontSize="14"
+                              Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"/>
+                    <TextBlock x:Name="ActiveBannerText"
+                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                               Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Section: Single-instance widgets -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Widgets"
+                           Style="{ThemeResource BodyStrongTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           Margin="0,0,0,4"/>
+
+                <Grid x:Name="WidgetGrid"
+                      ColumnSpacing="12"
+                      RowSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Clock -->
+                    <Border Grid.Row="0" Grid.Column="0"
+                            x:Name="ClockCard"
+                            CornerRadius="8"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            Padding="16">
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <FontIcon Glyph="&#xE917;"
+                                              FontSize="18"
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Text="Clock"
+                                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <Border x:Name="ClockActivePill"
+                                        Background="{ThemeResource AccentFillColorDefaultBrush}"
+                                        CornerRadius="4"
+                                        Padding="6,2"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Visibility="Collapsed">
+                                    <TextBlock Text="Active"
+                                               FontSize="11"
+                                               Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"/>
+                                </Border>
+                            </Grid>
+                            <TextBlock Text="Shows current time and date"
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap"/>
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                                <Button x:Name="ClockButton"
+                                        Tag="Clock"
+                                        Click="AddWidget_Click">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <FontIcon x:Name="ClockButtonIcon"
+                                                  Glyph="&#xE710;"
+                                                  FontSize="12"/>
+                                        <TextBlock x:Name="ClockButtonText"
+                                                   Text="Add Widget"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Tag="Clock"
+                                        Style="{ThemeResource SubtleButtonStyle}"
+                                        Click="ConfigureWidget_Click"
+                                        ToolTipService.ToolTip="Configure">
+                                    <FontIcon Glyph="&#xE713;" FontSize="12"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Weather -->
+                    <Border Grid.Row="0" Grid.Column="1"
+                            x:Name="WeatherCard"
+                            CornerRadius="8"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            Padding="16">
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <FontIcon Glyph="&#xE818;"
+                                              FontSize="18"
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Text="Weather"
+                                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <Border x:Name="WeatherActivePill"
+                                        Background="{ThemeResource AccentFillColorDefaultBrush}"
+                                        CornerRadius="4"
+                                        Padding="6,2"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Visibility="Collapsed">
+                                    <TextBlock Text="Active"
+                                               FontSize="11"
+                                               Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"/>
+                                </Border>
+                            </Grid>
+                            <TextBlock Text="Local weather and forecast"
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap"/>
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                                <Button x:Name="WeatherButton"
+                                        Tag="Weather"
+                                        Click="AddWidget_Click">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <FontIcon x:Name="WeatherButtonIcon"
+                                                  Glyph="&#xE710;"
+                                                  FontSize="12"/>
+                                        <TextBlock x:Name="WeatherButtonText"
+                                                   Text="Add Widget"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Tag="Weather"
+                                        Style="{ThemeResource SubtleButtonStyle}"
+                                        Click="ConfigureWidget_Click"
+                                        ToolTipService.ToolTip="Configure">
+                                    <FontIcon Glyph="&#xE713;" FontSize="12"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- System Stats -->
+                    <Border Grid.Row="0" Grid.Column="2"
+                            x:Name="SystemCard"
+                            CornerRadius="8"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            Padding="16">
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <FontIcon Glyph="&#xE7F4;"
+                                              FontSize="18"
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Text="System Stats"
+                                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <Border x:Name="SystemActivePill"
+                                        Background="{ThemeResource AccentFillColorDefaultBrush}"
+                                        CornerRadius="4"
+                                        Padding="6,2"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Visibility="Collapsed">
+                                    <TextBlock Text="Active"
+                                               FontSize="11"
+                                               Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"/>
+                                </Border>
+                            </Grid>
+                            <TextBlock Text="CPU, RAM and disk usage"
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap"/>
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                                <Button x:Name="SystemButton"
+                                        Tag="SystemStats"
+                                        Click="AddWidget_Click">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <FontIcon x:Name="SystemButtonIcon"
+                                                  Glyph="&#xE710;"
+                                                  FontSize="12"/>
+                                        <TextBlock x:Name="SystemButtonText"
+                                                   Text="Add Widget"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Tag="SystemStats"
+                                        Style="{ThemeResource SubtleButtonStyle}"
+                                        Click="ConfigureWidget_Click"
+                                        ToolTipService.ToolTip="Configure">
+                                    <FontIcon Glyph="&#xE713;" FontSize="12"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Media -->
+                    <Border Grid.Row="1" Grid.Column="0"
+                            x:Name="MediaCard"
+                            CornerRadius="8"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            Padding="16">
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <FontIcon Glyph="&#xE8D6;"
+                                              FontSize="18"
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Text="Media"
+                                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <Border x:Name="MediaActivePill"
+                                        Background="{ThemeResource AccentFillColorDefaultBrush}"
+                                        CornerRadius="4"
+                                        Padding="6,2"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Visibility="Collapsed">
+                                    <TextBlock Text="Active"
+                                               FontSize="11"
+                                               Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"/>
+                                </Border>
+                            </Grid>
+                            <TextBlock Text="Now playing and controls"
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap"/>
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                                <Button x:Name="MediaButton"
+                                        Tag="Media"
+                                        Click="AddWidget_Click">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <FontIcon x:Name="MediaButtonIcon"
+                                                  Glyph="&#xE710;"
+                                                  FontSize="12"/>
+                                        <TextBlock x:Name="MediaButtonText"
+                                                   Text="Add Widget"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Tag="Media"
+                                        Style="{ThemeResource SubtleButtonStyle}"
+                                        Click="ConfigureWidget_Click"
+                                        ToolTipService.ToolTip="Configure">
+                                    <FontIcon Glyph="&#xE713;" FontSize="12"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Calendar -->
+                    <Border Grid.Row="1" Grid.Column="1"
+                            x:Name="CalendarCard"
+                            CornerRadius="8"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            Padding="16">
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <FontIcon Glyph="&#xE787;"
+                                              FontSize="18"
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Text="Calendar"
+                                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <Border x:Name="CalendarActivePill"
+                                        Background="{ThemeResource AccentFillColorDefaultBrush}"
+                                        CornerRadius="4"
+                                        Padding="6,2"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Visibility="Collapsed">
+                                    <TextBlock Text="Active"
+                                               FontSize="11"
+                                               Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"/>
+                                </Border>
+                            </Grid>
+                            <TextBlock Text="Upcoming events and date"
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap"/>
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                                <Button x:Name="CalendarButton"
+                                        Tag="Calendar"
+                                        Click="AddWidget_Click">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <FontIcon x:Name="CalendarButtonIcon"
+                                                  Glyph="&#xE710;"
+                                                  FontSize="12"/>
+                                        <TextBlock x:Name="CalendarButtonText"
+                                                   Text="Add Widget"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Tag="Calendar"
+                                        Style="{ThemeResource SubtleButtonStyle}"
+                                        Click="ConfigureWidget_Click"
+                                        ToolTipService.ToolTip="Configure">
+                                    <FontIcon Glyph="&#xE713;" FontSize="12"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Notes -->
+                    <Border Grid.Row="1" Grid.Column="2"
+                            x:Name="NotesCard"
+                            CornerRadius="8"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            Padding="16">
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <FontIcon Glyph="&#xE70B;"
+                                              FontSize="18"
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Text="Notes"
+                                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <Border x:Name="NotesActivePill"
+                                        Background="{ThemeResource AccentFillColorDefaultBrush}"
+                                        CornerRadius="4"
+                                        Padding="6,2"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Visibility="Collapsed">
+                                    <TextBlock Text="Active"
+                                               FontSize="11"
+                                               Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"/>
+                                </Border>
+                            </Grid>
+                            <TextBlock Text="Sticky notes on your desktop"
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap"/>
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                                <Button x:Name="NotesButton"
+                                        Tag="Notes"
+                                        Click="AddWidget_Click">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <FontIcon x:Name="NotesButtonIcon"
+                                                  Glyph="&#xE710;"
+                                                  FontSize="12"/>
+                                        <TextBlock x:Name="NotesButtonText"
+                                                   Text="Add Widget"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Tag="Notes"
+                                        Style="{ThemeResource SubtleButtonStyle}"
+                                        Click="ConfigureWidget_Click"
+                                        ToolTipService.ToolTip="Configure">
+                                    <FontIcon Glyph="&#xE713;" FontSize="12"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+            </StackPanel>
+
+            <!-- Section: App Folders (multi-instance) -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Multi-instance"
+                           Style="{ThemeResource BodyStrongTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           Margin="0,0,0,4"/>
+
+                <Border CornerRadius="8"
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        Padding="16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Spacing="6" Grid.Column="0">
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <FontIcon Glyph="&#xE8B7;"
+                                          FontSize="18"
+                                          Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                          VerticalAlignment="Center"/>
+                                <TextBlock Text="App Folders"
+                                           Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock Text="Each folder is its own widget. Add as many as you like."
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap"/>
+
+                            <!-- Live folder instance list -->
+                            <ItemsRepeater x:Name="FolderInstanceList"
+                                           Margin="0,8,0,0">
+                                <ItemsRepeater.Layout>
+                                    <StackLayout Spacing="6"/>
+                                </ItemsRepeater.Layout>
+                                <ItemsRepeater.ItemTemplate>
+                                    <DataTemplate x:DataType="local:FolderWidgetEntry">
+                                        <Border CornerRadius="6"
+                                                Background="{ThemeResource SubtleFillColorSecondaryBrush}"
+                                                Padding="10,6">
+                                            <Grid>
+                                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                                    <FontIcon Glyph="&#xE8B7;"
+                                                              FontSize="12"
+                                                              Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                              VerticalAlignment="Center"/>
+                                                    <TextBlock Text="{x:Bind Name}"
+                                                               Style="{ThemeResource CaptionTextBlockStyle}"
+                                                               VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                                <Button HorizontalAlignment="Right"
+                                                        Style="{ThemeResource SubtleButtonStyle}"
+                                                        Padding="4"
+                                                        Tag="{x:Bind Id}"
+                                                        Click="RemoveFolderInstance_Click">
+                                                    <FontIcon Glyph="&#xE711;" FontSize="10"/>
+                                                </Button>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsRepeater.ItemTemplate>
+                            </ItemsRepeater>
+                        </StackPanel>
+
+                        <Button x:Name="FoldersButton"
+                                Grid.Column="1"
+                                Tag="AppFolders"
+                                Style="{ThemeResource AccentButtonStyle}"
+                                VerticalAlignment="Top"
+                                Click="AddWidget_Click">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon Glyph="&#xE710;" FontSize="12"/>
+                                <TextBlock Text="Add Folder"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

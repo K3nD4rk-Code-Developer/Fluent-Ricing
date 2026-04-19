@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Fluent Ricing (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Fluent Ricing (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

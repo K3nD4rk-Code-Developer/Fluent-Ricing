@@ -1,0 +1,184 @@
+<Page
+    x:Class="Fluent_Ricing.WidgetsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer>
+        <StackPanel Spacing="16" Padding="32,24">
+
+            <TextBlock Text="Widgets"
+                       Style="{ThemeResource TitleLargeTextBlockStyle}" />
+            <TextBlock Text="Configure each widget individually"
+                       Style="{ThemeResource BodyTextBlockStyle}"
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                       Margin="0,0,0,8"/>
+
+            <!-- Clock Settings -->
+            <Expander x:Name="ClockExpander" HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12" Padding="0,8">
+                        <FontIcon Glyph="&#xE917;"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                        <TextBlock Text="Clock" Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="16" Padding="0,8">
+                    <ComboBox x:Name="ClockFormatCombo" Header="Time Format"
+                              SelectedIndex="0" HorizontalAlignment="Left" MinWidth="200">
+                        <ComboBoxItem Content="12-hour (1:30 PM)"/>
+                        <ComboBoxItem Content="24-hour (13:30)"/>
+                    </ComboBox>
+                    <ToggleSwitch x:Name="ClockShowSecondsToggle" Header="Show Seconds" IsOn="False"/>
+                    <ToggleSwitch x:Name="ClockShowDateToggle" Header="Show Date" IsOn="True"/>
+                    <ComboBox x:Name="ClockDateFormatCombo" Header="Date Format"
+                              SelectedIndex="0" HorizontalAlignment="Left" MinWidth="200">
+                        <ComboBoxItem Content="DD/MM/YYYY"/>
+                        <ComboBoxItem Content="MM/DD/YYYY"/>
+                        <ComboBoxItem Content="Day, Month DD"/>
+                    </ComboBox>
+                </StackPanel>
+            </Expander>
+
+            <!-- Weather Settings -->
+            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12" Padding="0,8">
+                        <FontIcon Glyph="&#xE818;"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                        <TextBlock Text="Weather" Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="16" Padding="0,8">
+                    <TextBox x:Name="WeatherLocationBox" Header="Location"
+                             PlaceholderText="e.g. London, UK" HorizontalAlignment="Left"
+                             MinWidth="280"/>
+                    <ComboBox x:Name="WeatherUnitCombo" Header="Temperature Unit"
+                              SelectedIndex="0" HorizontalAlignment="Left" MinWidth="200">
+                        <ComboBoxItem Content="Celsius (°C)"/>
+                        <ComboBoxItem Content="Fahrenheit (°F)"/>
+                    </ComboBox>
+                    <ComboBox x:Name="WeatherRefreshCombo" Header="Refresh Interval"
+                              SelectedIndex="1" HorizontalAlignment="Left" MinWidth="200">
+                        <ComboBoxItem Content="15 minutes"/>
+                        <ComboBoxItem Content="30 minutes"/>
+                        <ComboBoxItem Content="1 hour"/>
+                    </ComboBox>
+                    <ToggleSwitch x:Name="WeatherForecastToggle" Header="Show 3-day Forecast" IsOn="True"/>
+                </StackPanel>
+            </Expander>
+
+            <!-- System Stats Settings -->
+            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12" Padding="0,8">
+                        <FontIcon Glyph="&#xE7F4;"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                        <TextBlock Text="System Stats" Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="16" Padding="0,8">
+                    <ToggleSwitch x:Name="StatsCpuToggle" Header="Show CPU Usage" IsOn="True"/>
+                    <ToggleSwitch x:Name="StatsRamToggle" Header="Show RAM Usage" IsOn="True"/>
+                    <ToggleSwitch x:Name="StatsDiskToggle" Header="Show Disk Usage" IsOn="False"/>
+                    <ToggleSwitch x:Name="StatsGpuToggle" Header="Show GPU Usage" IsOn="False"/>
+                    <ComboBox x:Name="StatsRefreshCombo" Header="Refresh Rate"
+                              SelectedIndex="1" HorizontalAlignment="Left" MinWidth="200">
+                        <ComboBoxItem Content="1 second"/>
+                        <ComboBoxItem Content="2 seconds"/>
+                        <ComboBoxItem Content="5 seconds"/>
+                    </ComboBox>
+                </StackPanel>
+            </Expander>
+
+            <!-- Media Settings -->
+            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12" Padding="0,8">
+                        <FontIcon Glyph="&#xE8D6;"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                        <TextBlock Text="Media" Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="16" Padding="0,8">
+                    <ToggleSwitch x:Name="MediaAlbumArtToggle" Header="Show Album Art" IsOn="True"/>
+                    <ToggleSwitch x:Name="MediaControlsToggle" Header="Show Playback Controls" IsOn="True"/>
+                    <ToggleSwitch x:Name="MediaProgressToggle" Header="Show Progress Bar" IsOn="True"/>
+                </StackPanel>
+            </Expander>
+
+            <!-- Calendar Settings -->
+            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12" Padding="0,8">
+                        <FontIcon Glyph="&#xE787;"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                        <TextBlock Text="Calendar" Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="16" Padding="0,8">
+                    <ComboBox x:Name="CalendarEventsCombo" Header="Events to Show"
+                              SelectedIndex="1" HorizontalAlignment="Left" MinWidth="200">
+                        <ComboBoxItem Content="Today only"/>
+                        <ComboBoxItem Content="Next 3 days"/>
+                        <ComboBoxItem Content="Next 7 days"/>
+                    </ComboBox>
+                    <ToggleSwitch x:Name="CalendarWeekNumberToggle" Header="Show Week Number" IsOn="False"/>
+                    <ToggleSwitch x:Name="CalendarMiniCalToggle" Header="Show Mini Calendar" IsOn="True"/>
+                </StackPanel>
+            </Expander>
+
+            <!-- Notes Settings -->
+            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12" Padding="0,8">
+                        <FontIcon Glyph="&#xE70B;"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                        <TextBlock Text="Notes" Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="16" Padding="0,8">
+                    <ComboBox x:Name="NotesFontSizeCombo" Header="Note Font Size"
+                              SelectedIndex="1" HorizontalAlignment="Left" MinWidth="200">
+                        <ComboBoxItem Content="Small"/>
+                        <ComboBoxItem Content="Medium"/>
+                        <ComboBoxItem Content="Large"/>
+                    </ComboBox>
+                    <ToggleSwitch x:Name="NotesAutoSaveToggle" Header="Auto-save Notes" IsOn="True"/>
+                </StackPanel>
+            </Expander>
+
+            <!-- App Folders Settings -->
+            <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12" Padding="0,8">
+                        <FontIcon Glyph="&#xE8B7;"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                        <TextBlock Text="App Folders" Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="16" Padding="0,8">
+                    <ComboBox x:Name="FolderIconSizeCombo" Header="Icon Size"
+                              SelectedIndex="1" HorizontalAlignment="Left" MinWidth="200">
+                        <ComboBoxItem Content="Small (24px)"/>
+                        <ComboBoxItem Content="Medium (32px)"/>
+                        <ComboBoxItem Content="Large (48px)"/>
+                    </ComboBox>
+                    <ToggleSwitch x:Name="FolderShowLabelsToggle" Header="Show App Labels" IsOn="True"/>
+                    <ToggleSwitch x:Name="FolderShowCountToggle" Header="Show App Count on Folder" IsOn="True"/>
+                    <Button x:Name="AddFolderButton" Content="+ Add Folder"
+                            Style="{ThemeResource AccentButtonStyle}"
+                            Click="AddFolderButton_Click"/>
+                </StackPanel>
+            </Expander>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
